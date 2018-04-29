@@ -8309,472 +8309,7 @@ var _user$project$Main$bulma = A2(
 			_1: {ctor: '[]'}
 		}
 	});
-var _user$project$Main$viewUser = function (user) {
-	return A2(
-		_elm_lang$html$Html$pre,
-		{ctor: '[]'},
-		_elm_lang$core$List$singleton(
-			_elm_lang$html$Html$text(
-				_elm_lang$core$Basics$toString(user))));
-};
-var _user$project$Main$viewErrors = function (errors) {
-	var _p0 = errors;
-	if (_p0.ctor === '[]') {
-		return _elm_lang$html$Html$text('');
-	} else {
-		return A2(
-			_elm_lang$html$Html$div,
-			{
-				ctor: '::',
-				_0: _elm_lang$html$Html_Attributes$class('notification is-danger'),
-				_1: {ctor: '[]'}
-			},
-			{
-				ctor: '::',
-				_0: A2(
-					_elm_lang$html$Html$ul,
-					{ctor: '[]'},
-					A2(
-						_elm_lang$core$List$map,
-						function (_p1) {
-							return A2(
-								_elm_lang$html$Html$li,
-								{ctor: '[]'},
-								_elm_lang$core$List$singleton(
-									_elm_lang$html$Html$text(_p1)));
-						},
-						_p0)),
-				_1: {ctor: '[]'}
-			});
-	}
-};
-var _user$project$Main$user = {firstName: 'Bob', lastName: 'St-Jean', age: 23, password: 'secret'};
-var _user$project$Main$model = {
-	firstName: 'Martin',
-	lastName: 'Chabot',
-	age: '34',
-	password: 'secret',
-	passwordConfirm: 'secret',
-	errors: {
-		ctor: '::',
-		_0: 'CALINNE',
-		_1: {ctor: '[]'}
-	},
-	user: _elm_lang$core$Maybe$Just(_user$project$Main$user)
-};
-var _user$project$Main$Model = F7(
-	function (a, b, c, d, e, f, g) {
-		return {firstName: a, lastName: b, age: c, password: d, passwordConfirm: e, errors: f, user: g};
-	});
-var _user$project$Main$User = F4(
-	function (a, b, c, d) {
-		return {firstName: a, lastName: b, age: c, password: d};
-	});
-var _user$project$Main$modelToUser = function (model) {
-	return A2(
-		_user$project$Cast$cast,
-		A3(_user$project$Cast$mustNotBe, _elm_lang$core$String$isEmpty, 'Password must not be empty', model.password),
-		A2(
-			_user$project$Cast$cast,
-			_elm_lang$core$String$toInt(model.age),
-			A2(
-				_user$project$Cast$cast,
-				A3(_user$project$Cast$mustNotBe, _elm_lang$core$String$isEmpty, 'Last Name must not be empty', model.lastName),
-				A2(
-					_user$project$Cast$cast,
-					A3(_user$project$Cast$mustNotBe, _elm_lang$core$String$isEmpty, 'First Name must not be empty', model.firstName),
-					_elm_lang$core$Result$Ok(_user$project$Main$User)))));
-};
-var _user$project$Main$update = F2(
-	function (msg, model) {
-		var _p2 = msg;
-		switch (_p2.ctor) {
-			case 'SetFirstName':
-				return _elm_lang$core$Native_Utils.update(
-					model,
-					{firstName: _p2._0});
-			case 'SetLastName':
-				return _elm_lang$core$Native_Utils.update(
-					model,
-					{lastName: _p2._0});
-			case 'SetAge':
-				return _elm_lang$core$Native_Utils.update(
-					model,
-					{age: _p2._0});
-			case 'SetPassword':
-				return _elm_lang$core$Native_Utils.update(
-					model,
-					{password: _p2._0});
-			case 'SetPasswordConfirm':
-				return _elm_lang$core$Native_Utils.update(
-					model,
-					{passwordConfirm: _p2._0});
-			default:
-				var _p3 = _user$project$Main$modelToUser(model);
-				if (_p3.ctor === 'Ok') {
-					return _elm_lang$core$Native_Utils.update(
-						model,
-						{
-							user: _elm_lang$core$Maybe$Just(_p3._0),
-							errors: {ctor: '[]'}
-						});
-				} else {
-					return _elm_lang$core$Native_Utils.update(
-						model,
-						{user: _elm_lang$core$Maybe$Nothing, errors: _p3._0});
-				}
-		}
-	});
-var _user$project$Main$SignUp = {ctor: 'SignUp'};
-var _user$project$Main$SetPasswordConfirm = function (a) {
-	return {ctor: 'SetPasswordConfirm', _0: a};
-};
-var _user$project$Main$SetPassword = function (a) {
-	return {ctor: 'SetPassword', _0: a};
-};
-var _user$project$Main$SetAge = function (a) {
-	return {ctor: 'SetAge', _0: a};
-};
-var _user$project$Main$SetLastName = function (a) {
-	return {ctor: 'SetLastName', _0: a};
-};
-var _user$project$Main$SetFirstName = function (a) {
-	return {ctor: 'SetFirstName', _0: a};
-};
-var _user$project$Main$userForm = function (model) {
-	return A2(
-		_elm_lang$html$Html$form,
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$action('javascript: void(0)'),
-			_1: {
-				ctor: '::',
-				_0: _elm_lang$html$Html_Events$onSubmit(_user$project$Main$SignUp),
-				_1: {ctor: '[]'}
-			}
-		},
-		{
-			ctor: '::',
-			_0: A2(
-				_elm_lang$html$Html$div,
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('field'),
-					_1: {ctor: '[]'}
-				},
-				{
-					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$label,
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('label'),
-							_1: {ctor: '[]'}
-						},
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html$text('First Name'),
-							_1: {ctor: '[]'}
-						}),
-					_1: {
-						ctor: '::',
-						_0: A2(
-							_elm_lang$html$Html$div,
-							{
-								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$class('control'),
-								_1: {ctor: '[]'}
-							},
-							{
-								ctor: '::',
-								_0: A2(
-									_elm_lang$html$Html$input,
-									{
-										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$class('input'),
-										_1: {
-											ctor: '::',
-											_0: _elm_lang$html$Html_Attributes$type_('text'),
-											_1: {
-												ctor: '::',
-												_0: _elm_lang$html$Html_Attributes$value(model.firstName),
-												_1: {
-													ctor: '::',
-													_0: _elm_lang$html$Html_Events$onInput(_user$project$Main$SetFirstName),
-													_1: {ctor: '[]'}
-												}
-											}
-										}
-									},
-									{ctor: '[]'}),
-								_1: {ctor: '[]'}
-							}),
-						_1: {ctor: '[]'}
-					}
-				}),
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_elm_lang$html$Html$div,
-					{
-						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$class('field'),
-						_1: {ctor: '[]'}
-					},
-					{
-						ctor: '::',
-						_0: A2(
-							_elm_lang$html$Html$label,
-							{
-								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$class('label'),
-								_1: {ctor: '[]'}
-							},
-							{
-								ctor: '::',
-								_0: _elm_lang$html$Html$text('Last Name'),
-								_1: {ctor: '[]'}
-							}),
-						_1: {
-							ctor: '::',
-							_0: A2(
-								_elm_lang$html$Html$div,
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$class('control'),
-									_1: {ctor: '[]'}
-								},
-								{
-									ctor: '::',
-									_0: A2(
-										_elm_lang$html$Html$input,
-										{
-											ctor: '::',
-											_0: _elm_lang$html$Html_Attributes$class('input'),
-											_1: {
-												ctor: '::',
-												_0: _elm_lang$html$Html_Attributes$type_('text'),
-												_1: {
-													ctor: '::',
-													_0: _elm_lang$html$Html_Attributes$value(model.lastName),
-													_1: {
-														ctor: '::',
-														_0: _elm_lang$html$Html_Events$onInput(_user$project$Main$SetLastName),
-														_1: {ctor: '[]'}
-													}
-												}
-											}
-										},
-										{ctor: '[]'}),
-									_1: {ctor: '[]'}
-								}),
-							_1: {ctor: '[]'}
-						}
-					}),
-				_1: {
-					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$div,
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('field'),
-							_1: {ctor: '[]'}
-						},
-						{
-							ctor: '::',
-							_0: A2(
-								_elm_lang$html$Html$label,
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$class('label'),
-									_1: {ctor: '[]'}
-								},
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html$text('Age'),
-									_1: {ctor: '[]'}
-								}),
-							_1: {
-								ctor: '::',
-								_0: A2(
-									_elm_lang$html$Html$div,
-									{
-										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$class('control'),
-										_1: {ctor: '[]'}
-									},
-									{
-										ctor: '::',
-										_0: A2(
-											_elm_lang$html$Html$input,
-											{
-												ctor: '::',
-												_0: _elm_lang$html$Html_Attributes$class('input'),
-												_1: {
-													ctor: '::',
-													_0: _elm_lang$html$Html_Attributes$type_('number'),
-													_1: {
-														ctor: '::',
-														_0: _elm_lang$html$Html_Attributes$value(model.age),
-														_1: {
-															ctor: '::',
-															_0: _elm_lang$html$Html_Events$onInput(_user$project$Main$SetAge),
-															_1: {ctor: '[]'}
-														}
-													}
-												}
-											},
-											{ctor: '[]'}),
-										_1: {ctor: '[]'}
-									}),
-								_1: {ctor: '[]'}
-							}
-						}),
-					_1: {
-						ctor: '::',
-						_0: A2(
-							_elm_lang$html$Html$div,
-							{
-								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$class('field'),
-								_1: {ctor: '[]'}
-							},
-							{
-								ctor: '::',
-								_0: A2(
-									_elm_lang$html$Html$label,
-									{
-										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$class('label'),
-										_1: {ctor: '[]'}
-									},
-									{
-										ctor: '::',
-										_0: _elm_lang$html$Html$text('Password'),
-										_1: {ctor: '[]'}
-									}),
-								_1: {
-									ctor: '::',
-									_0: A2(
-										_elm_lang$html$Html$div,
-										{
-											ctor: '::',
-											_0: _elm_lang$html$Html_Attributes$class('control'),
-											_1: {ctor: '[]'}
-										},
-										{
-											ctor: '::',
-											_0: A2(
-												_elm_lang$html$Html$input,
-												{
-													ctor: '::',
-													_0: _elm_lang$html$Html_Attributes$class('input'),
-													_1: {
-														ctor: '::',
-														_0: _elm_lang$html$Html_Attributes$type_('password'),
-														_1: {
-															ctor: '::',
-															_0: _elm_lang$html$Html_Attributes$value(model.password),
-															_1: {
-																ctor: '::',
-																_0: _elm_lang$html$Html_Events$onInput(_user$project$Main$SetPassword),
-																_1: {ctor: '[]'}
-															}
-														}
-													}
-												},
-												{ctor: '[]'}),
-											_1: {ctor: '[]'}
-										}),
-									_1: {ctor: '[]'}
-								}
-							}),
-						_1: {
-							ctor: '::',
-							_0: A2(
-								_elm_lang$html$Html$div,
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$class('field'),
-									_1: {ctor: '[]'}
-								},
-								{
-									ctor: '::',
-									_0: A2(
-										_elm_lang$html$Html$label,
-										{
-											ctor: '::',
-											_0: _elm_lang$html$Html_Attributes$class('label'),
-											_1: {ctor: '[]'}
-										},
-										{
-											ctor: '::',
-											_0: _elm_lang$html$Html$text('Password Confirm'),
-											_1: {ctor: '[]'}
-										}),
-									_1: {
-										ctor: '::',
-										_0: A2(
-											_elm_lang$html$Html$div,
-											{
-												ctor: '::',
-												_0: _elm_lang$html$Html_Attributes$class('control'),
-												_1: {ctor: '[]'}
-											},
-											{
-												ctor: '::',
-												_0: A2(
-													_elm_lang$html$Html$input,
-													{
-														ctor: '::',
-														_0: _elm_lang$html$Html_Attributes$class('input'),
-														_1: {
-															ctor: '::',
-															_0: _elm_lang$html$Html_Attributes$type_('password'),
-															_1: {
-																ctor: '::',
-																_0: _elm_lang$html$Html_Attributes$value(model.passwordConfirm),
-																_1: {
-																	ctor: '::',
-																	_0: _elm_lang$html$Html_Events$onInput(_user$project$Main$SetPasswordConfirm),
-																	_1: {ctor: '[]'}
-																}
-															}
-														}
-													},
-													{ctor: '[]'}),
-												_1: {ctor: '[]'}
-											}),
-										_1: {ctor: '[]'}
-									}
-								}),
-							_1: {
-								ctor: '::',
-								_0: A2(
-									_elm_lang$html$Html$button,
-									{
-										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$class('button is-primary'),
-										_1: {
-											ctor: '::',
-											_0: _elm_lang$html$Html_Events$onSubmit(_user$project$Main$SignUp),
-											_1: {ctor: '[]'}
-										}
-									},
-									{
-										ctor: '::',
-										_0: _elm_lang$html$Html$text('SignUp'),
-										_1: {ctor: '[]'}
-									}),
-								_1: {ctor: '[]'}
-							}
-						}
-					}
-				}
-			}
-		});
-};
-var _user$project$Main$view = function (model) {
+var _user$project$Main$layout = function (inner) {
 	return A2(
 		_elm_lang$html$Html$div,
 		{ctor: '[]'},
@@ -8792,12 +8327,242 @@ var _user$project$Main$view = function (model) {
 					},
 					{
 						ctor: '::',
+						_0: inner,
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			}
+		});
+};
+var _user$project$Main$ifEmpty = function (error) {
+	return A2(_user$project$Cast$mustNotBe, _elm_lang$core$String$isEmpty, error);
+};
+var _user$project$Main$viewUser = function (_p0) {
+	return A2(
+		_elm_lang$core$Maybe$withDefault,
+		_elm_lang$html$Html$text(''),
+		A2(
+			_elm_lang$core$Maybe$map,
+			function (_p1) {
+				return A2(
+					_elm_lang$html$Html$pre,
+					{ctor: '[]'},
+					_elm_lang$core$List$singleton(
+						_elm_lang$html$Html$text(
+							_elm_lang$core$Basics$toString(_p1))));
+			},
+			_p0));
+};
+var _user$project$Main$viewErrors = function (errors) {
+	var _p2 = errors;
+	if (_p2.ctor === '[]') {
+		return _elm_lang$html$Html$text('');
+	} else {
+		return A2(
+			_elm_lang$html$Html$div,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$class('notification is-danger'),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$ul,
+					{ctor: '[]'},
+					A2(
+						_elm_lang$core$List$map,
+						function (_p3) {
+							return A2(
+								_elm_lang$html$Html$li,
+								{ctor: '[]'},
+								_elm_lang$core$List$singleton(
+									_elm_lang$html$Html$text(_p3)));
+						},
+						_p2)),
+				_1: {ctor: '[]'}
+			});
+	}
+};
+var _user$project$Main$model = {
+	name: 'Joe',
+	age: '33',
+	password: '',
+	passwordConfirm: '',
+	formErrors: {ctor: '[]'},
+	sentUser: _elm_lang$core$Maybe$Nothing
+};
+var _user$project$Main$Model = F6(
+	function (a, b, c, d, e, f) {
+		return {name: a, age: b, password: c, passwordConfirm: d, formErrors: e, sentUser: f};
+	});
+var _user$project$Main$User = F3(
+	function (a, b, c) {
+		return {name: a, age: b, password: c};
+	});
+var _user$project$Main$modelToUser = function (model) {
+	return A2(
+		_user$project$Cast$cast,
+		A2(
+			_elm_lang$core$Result$andThen,
+			A2(
+				_user$project$Cast$mustBe,
+				F2(
+					function (x, y) {
+						return _elm_lang$core$Native_Utils.eq(x, y);
+					})(model.passwordConfirm),
+				'Confirm password does not match'),
+			A2(
+				_elm_lang$core$Result$andThen,
+				A2(
+					_user$project$Cast$mustBe,
+					function (a) {
+						return _elm_lang$core$Native_Utils.cmp(
+							_elm_lang$core$String$length(a),
+							6) > -1;
+					},
+					'Password  must be have al least 6 character'),
+				A3(_user$project$Cast$mustNotBe, _elm_lang$core$String$isEmpty, 'Please enter a password', model.password))),
+		A2(
+			_user$project$Cast$cast,
+			A2(
+				_elm_lang$core$Result$andThen,
+				A2(
+					_user$project$Cast$mustBe,
+					function (a) {
+						return _elm_lang$core$Native_Utils.cmp(a, 18) > -1;
+					},
+					'Age must be over 18.'),
+				function (_p4) {
+					return A2(
+						_elm_lang$core$Result$mapError,
+						_elm_lang$core$Basics$always('Age must be a number'),
+						_elm_lang$core$String$toInt(_p4));
+				}(model.age)),
+			A2(
+				_user$project$Cast$cast,
+				A3(_user$project$Cast$mustNotBe, _elm_lang$core$String$isEmpty, 'Name not be empty', model.name),
+				_elm_lang$core$Result$Ok(_user$project$Main$User))));
+};
+var _user$project$Main$sendModel = function (model) {
+	var _p5 = _user$project$Main$modelToUser(model);
+	if (_p5.ctor === 'Ok') {
+		return _elm_lang$core$Native_Utils.update(
+			model,
+			{
+				sentUser: _elm_lang$core$Maybe$Just(_p5._0),
+				formErrors: {ctor: '[]'}
+			});
+	} else {
+		return _elm_lang$core$Native_Utils.update(
+			model,
+			{sentUser: _elm_lang$core$Maybe$Nothing, formErrors: _p5._0});
+	}
+};
+var _user$project$Main$update = F2(
+	function (msg, model) {
+		var _p6 = msg;
+		switch (_p6.ctor) {
+			case 'SetName':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{name: _p6._0}),
+					{
+						ctor: '::',
+						_0: _elm_lang$core$Platform_Cmd$none,
+						_1: {ctor: '[]'}
+					});
+			case 'SetAge':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{age: _p6._0}),
+					{
+						ctor: '::',
+						_0: _elm_lang$core$Platform_Cmd$none,
+						_1: {ctor: '[]'}
+					});
+			case 'SetPassword':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{password: _p6._0}),
+					{
+						ctor: '::',
+						_0: _elm_lang$core$Platform_Cmd$none,
+						_1: {ctor: '[]'}
+					});
+			case 'SetPasswordConfirm':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{passwordConfirm: _p6._0}),
+					{
+						ctor: '::',
+						_0: _elm_lang$core$Platform_Cmd$none,
+						_1: {ctor: '[]'}
+					});
+			default:
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_user$project$Main$sendModel(model),
+					{
+						ctor: '::',
+						_0: _elm_lang$core$Platform_Cmd$none,
+						_1: {ctor: '[]'}
+					});
+		}
+	});
+var _user$project$Main$Send = {ctor: 'Send'};
+var _user$project$Main$SetPasswordConfirm = function (a) {
+	return {ctor: 'SetPasswordConfirm', _0: a};
+};
+var _user$project$Main$SetPassword = function (a) {
+	return {ctor: 'SetPassword', _0: a};
+};
+var _user$project$Main$SetAge = function (a) {
+	return {ctor: 'SetAge', _0: a};
+};
+var _user$project$Main$SetName = function (a) {
+	return {ctor: 'SetName', _0: a};
+};
+var _user$project$Main$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('columns is-centered'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$div,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$class('column is-one-third'),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: _user$project$Main$viewErrors(model.formErrors),
+					_1: {
+						ctor: '::',
 						_0: A2(
-							_elm_lang$html$Html$div,
+							_elm_lang$html$Html$form,
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$class('container'),
-								_1: {ctor: '[]'}
+								_0: _elm_lang$html$Html_Attributes$action('javscript: void(0);'),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$html$Html_Events$onSubmit(_user$project$Main$Send),
+									_1: {ctor: '[]'}
+								}
 							},
 							{
 								ctor: '::',
@@ -8805,46 +8570,247 @@ var _user$project$Main$view = function (model) {
 									_elm_lang$html$Html$div,
 									{
 										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$class('columns'),
+										_0: _elm_lang$html$Html_Attributes$class('field'),
 										_1: {ctor: '[]'}
 									},
 									{
 										ctor: '::',
 										_0: A2(
-											_elm_lang$html$Html$div,
+											_elm_lang$html$Html$label,
 											{
 												ctor: '::',
-												_0: _elm_lang$html$Html_Attributes$class('column'),
+												_0: _elm_lang$html$Html_Attributes$class('label'),
 												_1: {ctor: '[]'}
 											},
 											{
 												ctor: '::',
-												_0: _user$project$Main$viewErrors(model.errors),
+												_0: _elm_lang$html$Html$text('Name'),
+												_1: {ctor: '[]'}
+											}),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$input,
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$type_('text'),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$class('input'),
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$html$Html_Attributes$value(model.name),
+															_1: {
+																ctor: '::',
+																_0: _elm_lang$html$Html_Events$onInput(_user$project$Main$SetName),
+																_1: {ctor: '[]'}
+															}
+														}
+													}
+												},
+												{ctor: '[]'}),
+											_1: {ctor: '[]'}
+										}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$div,
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$class('field'),
+											_1: {ctor: '[]'}
+										},
+										{
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$label,
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$class('label'),
+													_1: {ctor: '[]'}
+												},
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html$text('Age'),
+													_1: {ctor: '[]'}
+												}),
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_elm_lang$html$Html$input,
+													{
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$type_('text'),
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$html$Html_Attributes$class('input'),
+															_1: {
+																ctor: '::',
+																_0: _elm_lang$html$Html_Attributes$value(model.age),
+																_1: {
+																	ctor: '::',
+																	_0: _elm_lang$html$Html_Events$onInput(_user$project$Main$SetAge),
+																	_1: {ctor: '[]'}
+																}
+															}
+														}
+													},
+													{ctor: '[]'}),
+												_1: {ctor: '[]'}
+											}
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$div,
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$class('field'),
+												_1: {ctor: '[]'}
+											},
+											{
+												ctor: '::',
+												_0: A2(
+													_elm_lang$html$Html$label,
+													{
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$class('label'),
+														_1: {ctor: '[]'}
+													},
+													{
+														ctor: '::',
+														_0: _elm_lang$html$Html$text('Password'),
+														_1: {ctor: '[]'}
+													}),
 												_1: {
 													ctor: '::',
-													_0: _user$project$Main$userForm(model),
+													_0: A2(
+														_elm_lang$html$Html$input,
+														{
+															ctor: '::',
+															_0: _elm_lang$html$Html_Attributes$type_('password'),
+															_1: {
+																ctor: '::',
+																_0: _elm_lang$html$Html_Attributes$class('input'),
+																_1: {
+																	ctor: '::',
+																	_0: _elm_lang$html$Html_Attributes$value(model.password),
+																	_1: {
+																		ctor: '::',
+																		_0: _elm_lang$html$Html_Events$onInput(_user$project$Main$SetPassword),
+																		_1: {ctor: '[]'}
+																	}
+																}
+															}
+														},
+														{ctor: '[]'}),
+													_1: {ctor: '[]'}
+												}
+											}),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$div,
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$class('field'),
+													_1: {ctor: '[]'}
+												},
+												{
+													ctor: '::',
+													_0: A2(
+														_elm_lang$html$Html$label,
+														{
+															ctor: '::',
+															_0: _elm_lang$html$Html_Attributes$class('label'),
+															_1: {ctor: '[]'}
+														},
+														{
+															ctor: '::',
+															_0: _elm_lang$html$Html$text('Password'),
+															_1: {ctor: '[]'}
+														}),
 													_1: {
 														ctor: '::',
 														_0: A2(
-															_elm_lang$core$Maybe$withDefault,
-															_elm_lang$html$Html$text(''),
-															A2(_elm_lang$core$Maybe$map, _user$project$Main$viewUser, model.user)),
+															_elm_lang$html$Html$input,
+															{
+																ctor: '::',
+																_0: _elm_lang$html$Html_Attributes$type_('password'),
+																_1: {
+																	ctor: '::',
+																	_0: _elm_lang$html$Html_Attributes$class('input'),
+																	_1: {
+																		ctor: '::',
+																		_0: _elm_lang$html$Html_Attributes$value(model.passwordConfirm),
+																		_1: {
+																			ctor: '::',
+																			_0: _elm_lang$html$Html_Events$onInput(_user$project$Main$SetPasswordConfirm),
+																			_1: {ctor: '[]'}
+																		}
+																	}
+																}
+															},
+															{ctor: '[]'}),
 														_1: {ctor: '[]'}
 													}
-												}
-											}),
-										_1: {ctor: '[]'}
-									}),
-								_1: {ctor: '[]'}
+												}),
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_elm_lang$html$Html$div,
+													{
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$class('control'),
+														_1: {ctor: '[]'}
+													},
+													{
+														ctor: '::',
+														_0: A2(
+															_elm_lang$html$Html$button,
+															{
+																ctor: '::',
+																_0: _elm_lang$html$Html_Attributes$class('button is-primary'),
+																_1: {
+																	ctor: '::',
+																	_0: _elm_lang$html$Html_Attributes$type_('submit'),
+																	_1: {ctor: '[]'}
+																}
+															},
+															{
+																ctor: '::',
+																_0: _elm_lang$html$Html$text('Send'),
+																_1: {ctor: '[]'}
+															}),
+														_1: {ctor: '[]'}
+													}),
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
 							}),
-						_1: {ctor: '[]'}
-					}),
-				_1: {ctor: '[]'}
-			}
+						_1: {
+							ctor: '::',
+							_0: _user$project$Main$viewUser(model.sentUser),
+							_1: {ctor: '[]'}
+						}
+					}
+				}),
+			_1: {ctor: '[]'}
 		});
 };
-var _user$project$Main$main = _elm_lang$html$Html$beginnerProgram(
-	{model: _user$project$Main$model, update: _user$project$Main$update, view: _user$project$Main$view})();
+var _user$project$Main$main = _elm_lang$html$Html$program(
+	{
+		init: {ctor: '_Tuple2', _0: _user$project$Main$model, _1: _elm_lang$core$Platform_Cmd$none},
+		update: _user$project$Main$update,
+		view: function (_p7) {
+			return _user$project$Main$layout(
+				_user$project$Main$view(_p7));
+		},
+		subscriptions: _elm_lang$core$Basics$always(_elm_lang$core$Platform_Sub$none)
+	})();
 var Elm = {};
 Elm['Main'] = Elm['Main'] || {};
 if (typeof _user$project$Main$main !== 'undefined') {
