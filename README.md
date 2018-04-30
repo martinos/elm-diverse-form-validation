@@ -2,7 +2,7 @@
 
 This repo contains examples of multiple form validation technique.
 
-## (SimplestForm.elm)
+## [SimplestForm.elm](SimplestForm.elm)
 
 The simplest form validation uses a simple Result.mapN to cast the form to the desired data format.
 
@@ -25,7 +25,7 @@ Cons
 - Only one validation is made at a time
 - All errors are displayed in a callout. No inline error.
 
-##  (CastValidationForm.elm)
+##  [CastValidationForm.elm](CastValidationForm.elm)
 
 This uses a an applicative functor to do the validation
 
@@ -52,7 +52,7 @@ Pros
 - Can display multiple errors at the same time 
 
 Cons
-- Needs the (Cast.elm) file, I would advise to copy it in you app.
+- Needs the [Cast.elm](Cast.elm) file, I would advise to copy it in you app.
 - There is only one error that will be displayed per field. Sometime this is ok, since some validation are applied after the casting has been done.  We stop the validation on a given field when we get an error.
 - Validation is not displayed inline. They are only displayed in the callout.
 - Validation and casting are made at the same time 
