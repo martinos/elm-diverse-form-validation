@@ -21,7 +21,7 @@ cast resA resFn =
                     Err (errs ++ [ err ])
 
 
-mustNotBe : (a -> Bool) -> String -> a -> Result String a
+mustNotBe : (a -> Bool) -> err -> a -> Result err a
 mustNotBe cond err a =
     if a |> cond then
         Err err
@@ -29,7 +29,7 @@ mustNotBe cond err a =
         Ok a
 
 
-mustBe : (a -> Bool) -> String -> a -> Result String a
+mustBe : (a -> Bool) -> err -> a -> Result err a
 mustBe cond err a =
     if a |> cond then
         Ok a
